@@ -5,13 +5,14 @@ import { absoluteUrl, pageMetadata } from "@/lib/seo";
 import { withSlugs } from "@/lib/slug";
 import JsonLd from "@/components/JsonLd";
 import PageShell from "@/components/PageShell";
+import { BRAND_NAME } from "@/content/site";
 
 export const revalidate = 300;
 
 export const metadata: Metadata = pageMetadata({
-  title: "Websites & apps built end to end | Victor Abah",
+  title: `Websites & apps built end to end | ${BRAND_NAME}`,
   description:
-    "Every website and application I have built end to end: POS and inventory apps, school and hospital systems, logistics, restaurant, e-commerce and booking sites.",
+    "Websites and applications built end to end by Oasis Orchard Stack: POS and inventory apps, school and hospital systems, logistics, restaurant, e-commerce and booking sites.",
   path: "/work",
 });
 
@@ -21,7 +22,7 @@ export default async function WorkIndex() {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     url: absoluteUrl("/work"),
-    name: "Websites and applications by Victor Abah",
+    name: `Websites and applications by ${BRAND_NAME}`,
     mainEntity: {
       "@type": "ItemList",
       itemListElement: withSlugs(portfolio, (p) => p.title).map(

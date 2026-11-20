@@ -120,11 +120,13 @@ test("homepage entities match visible selected projects without self-review or a
     portfolio: content.PORTFOLIO,
     seo: content.SEO,
   })["@graph"];
-  const person = graph.find((node) => node["@type"] === "Person");
-  assert.equal(person.homeLocation.name, content.PROFILE.location);
-  assert.equal(person.description, content.ABOUT.body);
-  const profile = graph.find((node) => node["@type"] === "ProfilePage");
-  assert.equal(profile.mainEntity["@id"], person["@id"]);
+  const org = graph.find((node) => node["@type"] === "ProfessionalService");
+  assert.equal(org.name, content.PROFILE.name);
+  assert.equal(org.areaServed.name, content.PROFILE.location);
+  assert.equal(org.description, content.ABOUT.body);
+  assert.equal(org.founder.name, content.PROFILE.founder);
+  const home = graph.find((node) => node["@type"] === "WebPage");
+  assert.equal(home.about["@id"], org["@id"]);
   const work = graph.find((node) => node["@type"] === "ItemList");
   const expected = portfolio
     .featuredPortfolioEntries(content.PORTFOLIO)

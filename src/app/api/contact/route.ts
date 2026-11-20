@@ -3,6 +3,11 @@ import { Resend } from "resend";
 import { createServerSupabase, isSupabaseConfigured } from "@/lib/supabase";
 import { PROJECT_TYPES } from "@/content/site";
 import { getSiteUrl } from "@/lib/site-url";
+import {
+  BOOKING_PROJECT_TYPE,
+  describeBooking,
+  validateBooking,
+} from "@/lib/booking";
 
 type Submission = {
   name: string;
@@ -107,6 +112,7 @@ async function sendNotificationEmail(s: Submission) {
   // Production alerts require a verified sender; the Resend sandbox cannot
   // deliver to arbitrary notification inboxes.
   if (!apiKey || !to || !from) return false;
+  const isBooking = s.project_type === BOOKING_PROJECT_TYPE;
 
   const resend = new Resend(apiKey);
   const inboxUrl = `${getSiteUrl()}/admin/submissions`;
@@ -116,7 +122,7 @@ async function sendNotificationEmail(s: Submission) {
       from,
       to,
       replyTo: s.email,
-      subject: `New project enquiry from ${s.name}`,
+      subject: `${isBooking ? "New consultation booking" : "New project enquiry"} from ${s.name}`,
       text: [
         `Name: ${s.name}`,
         `Email: ${s.email}`,
@@ -131,7 +137,7 @@ async function sendNotificationEmail(s: Submission) {
       ].join("\n"),
       html: `
         <div style="font-family:system-ui,sans-serif;max-width:560px">
-          <h2 style="margin:0 0 12px">New project enquiry</h2>
+          <h2 style="margin:0 0 12px">${isBooking ? "New consultation booking" : "New project enquiry"}</h2>
           <p><strong>Name:</strong> ${escapeHtml(s.name)}</p>
           <p><strong>Email:</strong> <a href="mailto:${escapeHtml(s.email)}">${escapeHtml(s.email)}</a></p>
           <p><strong>Phone:</strong> ${escapeHtml(s.phone || "Not provided")}</p>
@@ -195,7 +201,8 @@ export async function POST(req: Request) {
   const name = clean(body.name, MAX.name);
   const email = clean(body.email, MAX.email).toLowerCase();
   const phone = clean(body.phone, MAX.phone);
-  const message = clean(body.message, MAX.message);
+  const isBooking = body.kind === "booking";
+  let message = clean(body.message, MAX.message);
   const projectTypeRaw = clean(body.projectType, MAX.projectType);
   const budget = clean(body.budget, MAX.budget) || null;
 
@@ -217,15 +224,35 @@ export async function POST(req: Request) {
       { status: 422 },
     );
   }
-  if (!message || message.length < 5) {
+  if (isBooking) {
+    const result = validateBooking(body);
+    if (!result.ok) {
+      return NextResponse.json({ error: result.error }, { status: 422 });
+    }
+    if (result.booking.format === "Phone call" && !phone) {
+      return NextResponse.json(
+        { error: "Please add a phone number so we can call you." },
+        { status: 422 },
+      );
+    }
+    // The booking details lead the message; the visitor's notes follow.
+    message = [
+      describeBooking(result.booking),
+      message ? `\nNotes:\n${message}` : "",
+    ]
+      .join("\n")
+      .trim();
+  } else if (!message || message.length < 5) {
     return NextResponse.json(
       { error: "Please enter a short message." },
       { status: 422 },
     );
   }
-  const projectType = PROJECT_TYPES.includes(projectTypeRaw)
-    ? projectTypeRaw
-    : null;
+  const projectType = isBooking
+    ? BOOKING_PROJECT_TYPE
+    : PROJECT_TYPES.includes(projectTypeRaw)
+      ? projectTypeRaw
+      : null;
   if (!projectType) {
     return NextResponse.json(
       { error: "Please choose a valid project type." },
@@ -279,7 +306,7 @@ export async function POST(req: Request) {
     return NextResponse.json(
       {
         error:
-          "The enquiry form is temporarily unavailable. Please email me directly or use WhatsApp; your message has not been sent.",
+          "The enquiry form is temporarily unavailable. Please email us directly or use WhatsApp; your message has not been sent.",
       },
       { status: 503 },
     );

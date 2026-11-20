@@ -7,6 +7,7 @@ import { slugify } from "@/lib/slug";
 import PageShell from "@/components/PageShell";
 import JsonLd from "@/components/JsonLd";
 import { pageMetadata, validPublishedDate } from "@/lib/seo";
+import { BRAND_NAME } from "@/content/site";
 
 export const revalidate = 300;
 
@@ -33,7 +34,7 @@ export default async function BlogIndex() {
     "@context": "https://schema.org",
     "@type": "Blog",
     "@id": `${site}/blog`,
-    name: "Victor Abah — Blog",
+    name: `${BRAND_NAME} — Blog`,
     description: BLOG_DESCRIPTION,
     url: `${site}/blog`,
     blogPost: posts.map((p) => ({
@@ -42,7 +43,7 @@ export default async function BlogIndex() {
       description: p.excerpt,
       url: `${site}/blog/${p.slug || slugify(p.title)}`,
       datePublished: validPublishedDate(p.publishedAt),
-      author: { "@type": "Person", name: "Victor Abah", url: site },
+      author: { "@type": "Organization", name: BRAND_NAME, url: site },
     })),
   };
 
@@ -52,7 +53,7 @@ export default async function BlogIndex() {
       <PageShell
         eyebrow="BLOG"
         title="Notes on building the systems businesses run on."
-        intro="What I have learned shipping point-of-sale, school, clinic, ordering and booking systems: what to build, what to skip, what it costs, and the things that only show up once real users arrive."
+        intro="What we have learned shipping point-of-sale, school, clinic, ordering and booking systems: what to build, what to skip, what it costs, and the things that only show up once real users arrive."
       >
         {posts.length === 0 ? (
           <p className="rounded-2xl border border-dashed border-border p-10 text-center text-sm text-muted">

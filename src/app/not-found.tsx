@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { Home, Mail } from "lucide-react";
+import { BRAND_NAME } from "@/content/site";
 
 export const metadata = {
-  title: "Page not found | Victor Abah",
+  title: `Page not found | ${BRAND_NAME}`,
   robots: { index: false, follow: true },
 };
 
@@ -26,7 +27,7 @@ export default function NotFound() {
           href="/#contact"
           className="flex items-center gap-2 rounded-full border border-border px-6 py-3 font-semibold transition hover:border-accent hover:text-accent"
         >
-          <Mail className="h-4 w-4" /> Contact Victor
+          <Mail className="h-4 w-4" /> Contact us
         </Link>
       </div>
     </div>

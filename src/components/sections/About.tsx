@@ -6,8 +6,9 @@ import Reveal from "@/components/Reveal";
 
 const HIGHLIGHTS = [
   "6+ years building for the web",
-  "One point of contact for design and development",
-  "Clear scope and visible progress",
+  "Senior developer on every project, no hand-offs",
+  "Fixed quotes in CAD, clear scope and visible progress",
+  "Privacy-conscious, accessible and bilingual-ready builds",
   "Launch, handover and ongoing support",
 ];
 
@@ -29,14 +30,16 @@ export default function About({
             <div className="mb-6 flex items-center gap-4 border-b border-border pb-6">
               <Image
                 src={profile.headshot}
-                alt={profile.name}
+                alt={profile.founder}
                 width={64}
                 height={64}
                 className="h-16 w-16 rounded-xl object-cover"
               />
               <div>
-                <p className="font-display font-semibold">{profile.name}</p>
-                <p className="mt-1 text-xs text-muted">{profile.role}</p>
+                <p className="font-display font-semibold">{profile.founder}</p>
+                <p className="mt-1 text-xs text-muted">
+                  {profile.founderRole}, {profile.name}
+                </p>
               </div>
             </div>
             <ul className="space-y-4">

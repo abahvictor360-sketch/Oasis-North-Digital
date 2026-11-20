@@ -14,6 +14,7 @@ import {
   type ProfileData,
   type ContactData,
 } from "@/content/site";
+import BookButton from "@/components/BookButton";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
@@ -44,7 +45,7 @@ export default function Contact({
         const response = await res.json();
         throw new Error(
           response.error ||
-            "Your message could not be sent. Please email me or use WhatsApp.",
+            "Your message could not be sent. Please email us or use WhatsApp.",
         );
       }
       setStatus("sent");
@@ -54,7 +55,7 @@ export default function Contact({
       setError(
         err instanceof Error
           ? err.message
-          : "Your message could not be sent. Please email me or use WhatsApp.",
+          : "Your message could not be sent. Please email us or use WhatsApp.",
       );
     }
   }
@@ -76,8 +77,8 @@ export default function Contact({
           {contact.headline}
         </h2>
         <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted">
-          Share a little about your business, what you need and the timing you
-          have in mind. We can work out the right next step together.
+          Share a little about your business or idea, what you need and the
+          timing you have in mind. We can work out the right next step together.
         </p>
         <div className="mt-10 grid items-start gap-10 xl:grid-cols-[0.85fr_1.15fr]">
           <div>
@@ -87,7 +88,7 @@ export default function Contact({
               </h3>
               <ol className="mt-5 space-y-4 text-sm text-muted">
                 <li>
-                  <span className="mr-3 text-accent">01</span>I review your
+                  <span className="mr-3 text-accent">01</span>We review your
                   brief and ask any useful follow-up questions.
                 </li>
                 <li>
@@ -100,10 +101,21 @@ export default function Contact({
                 </li>
               </ol>
               <p className="mt-6 border-t border-border pt-5 text-xs leading-relaxed text-muted">
-                Based in {profile.location}. Remote collaboration worldwide.
-                <br />
-                Working timezone: WAT (UTC+1).
+                Serving businesses and individuals across {profile.location}.
+                Calls booked in your time zone, Pacific to Atlantic.
               </p>
+            </div>
+            <div className="mt-5 rounded-2xl border border-accent/30 bg-accent/5 p-6">
+              <h3 className="font-display text-lg font-semibold">
+                Prefer to talk it through?
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted">
+                Book a 30-minute video or phone call at a time that suits you.
+              </p>
+              <BookButton
+                bookingUrl={profile.bookingUrl}
+                className="mt-4 inline-flex items-center gap-2 rounded-full bg-accent px-5 py-3 text-sm font-semibold text-[#06150d] transition hover:bg-accent-dim"
+              />
             </div>
             <a
               href={`mailto:${profile.email}`}
@@ -139,7 +151,7 @@ export default function Contact({
                 Your brief is on its way.
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-muted">
-                Thanks for getting in touch. I&apos;ll review your message and
+                Thanks for getting in touch. we&apos;ll review your message and
                 reply to the email address you provided.
               </p>
               <button
@@ -191,7 +203,7 @@ export default function Contact({
                 </label>
               </div>
               <label className={label}>
-                What can I help you with? <span className="text-muted">*</span>
+                What can we help you with? <span className="text-muted">*</span>
                 <select
                   name="projectType"
                   required
@@ -258,7 +270,7 @@ export default function Contact({
                     href={`mailto:${profile.email}`}
                     className="mt-2 inline-block underline"
                   >
-                    Email Victor directly
+                    Email us directly
                   </a>
                 </div>
               )}

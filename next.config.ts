@@ -15,6 +15,21 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // Service pages retired in the Oasis Orchard Stack rebrand.
+  async redirects() {
+    return [
+      {
+        source: "/services/web-development-nigeria",
+        destination: "/services/web-development-canada",
+        permanent: true,
+      },
+      {
+        source: "/services/ai-product-features",
+        destination: "/services/business-automation",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {

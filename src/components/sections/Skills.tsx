@@ -3,7 +3,7 @@ import Section from "@/components/Section";
 
 export default function Skills({ skills: SKILLS }: { skills: Skill[] }) {
   return (
-    <Section id="skills" eyebrow="SKILLS" title="Tools I work in day to day.">
+    <Section id="skills" eyebrow="OUR STACK" title="The stack behind every build.">
       <ul className="flex flex-wrap gap-3">
         {SKILLS.map((s) => (
           <li

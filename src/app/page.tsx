@@ -1,13 +1,10 @@
-import Sidebar from "@/components/Sidebar";
-import ScrollNav from "@/components/ScrollNav";
+import SiteHeader from "@/components/SiteHeader";
 import Footer from "@/components/Footer";
 import WhatsAppWidget from "@/components/WhatsAppWidget";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
-import Resume from "@/components/sections/Resume";
 import Services from "@/components/sections/Services";
 import Skills from "@/components/sections/Skills";
-import Certifications from "@/components/sections/Certifications";
 import Portfolio from "@/components/sections/Portfolio";
 import Faq from "@/components/sections/Faq";
 import Testimonials from "@/components/sections/Testimonials";
@@ -20,14 +17,12 @@ import { homeStructuredData } from "@/lib/structured-data";
 import { pageMetadata } from "@/lib/seo";
 import {
   getSettings,
-  getExperience,
   getEducation,
   getServices,
   getSkills,
   getPortfolio,
   getTestimonials,
   getClients,
-  getCertifications,
 } from "@/lib/data";
 
 // Re-fetch periodically; admin mutations call revalidatePath('/') for instant updates.
@@ -70,24 +65,20 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Home() {
   const [
     settings,
-    experience,
     education,
     services,
     skills,
     portfolio,
     testimonials,
     clients,
-    certifications,
   ] = await Promise.all([
     getSettings(),
-    getExperience(),
     getEducation(),
     getServices(),
     getSkills(),
     getPortfolio(),
     getTestimonials(),
     getClients(),
-    getCertifications(),
   ]);
 
   const { profile, hero, about, contact, seo } = settings;
@@ -105,10 +96,9 @@ export default async function Home() {
   return (
     <>
       <JsonLd value={jsonLd} />
-      <Sidebar profile={profile} />
-      <ScrollNav profile={profile} />
-      <main id="main-content" className="lg:ml-[280px] lg:pr-20">
-        <div className="pt-[73px] lg:pt-0">
+      <SiteHeader profile={profile} />
+      <main id="main-content">
+        <div>
           <Hero
             hero={hero}
             profile={profile}
@@ -124,16 +114,7 @@ export default async function Home() {
           <Services services={services} />
           <Process />
           <About about={about} profile={profile} />
-          <div className="border-b border-border px-6 pb-16 sm:px-10 lg:px-12">
-            <details className="mx-auto max-w-6xl rounded-2xl border border-border bg-bg-card">
-              <summary className="cursor-pointer p-6 font-display text-sm font-semibold">
-                Explore my experience, tools and qualifications
-              </summary>
-              <Resume experience={experience} education={education} />
-              <Skills skills={skills} />
-              <Certifications certifications={certifications} />
-            </details>
-          </div>
+          <Skills skills={skills} />
           <Faq />
           <Contact profile={profile} contact={contact} />
           <Footer profile={profile} />

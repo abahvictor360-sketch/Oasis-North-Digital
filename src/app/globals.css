@@ -1,19 +1,18 @@
 @import "tailwindcss";
 
 /* ---------------------------------------------------------------------------
-   Victor Abah portfolio — charcoal + single accent (#28E98C)
-   Reference interaction model: wpriverthemes.com/drake
+   Oasis Orchard Stack — northern-night navy + a single oasis-teal accent
 --------------------------------------------------------------------------- */
 
 :root {
-  --bg: #111111;
-  --bg-elevated: #1a1a1a;
-  --bg-card: #181818;
-  --border: #2a2a2a;
-  --text: #ededed;
-  --text-muted: #ababab;
-  --accent: #28e98c;
-  --accent-dim: #1fae6a;
+  --bg: #0b1116;
+  --bg-elevated: #10181f;
+  --bg-card: #121b23;
+  --border: #22303b;
+  --text: #ecf2f5;
+  --text-muted: #a3b1bb;
+  --accent: #2ee6c5;
+  --accent-dim: #1fb89d;
 }
 
 @theme inline {

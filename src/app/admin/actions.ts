@@ -315,6 +315,14 @@ export async function saveSettings(_prev: unknown, formData: FormData) {
       phoneRaw: String(formData.get("phoneRaw") ?? ""),
       location: String(formData.get("location") ?? ""),
       handle: String(formData.get("handle") ?? ""),
+      founder: String(formData.get("founder") ?? ""),
+      founderRole: String(formData.get("founderRole") ?? ""),
+      // Only an absolute https link is kept; anything else falls back to /book.
+      bookingUrl: /^https:\/\/\S+$/.test(
+        String(formData.get("bookingUrl") ?? "").trim(),
+      )
+        ? String(formData.get("bookingUrl")).trim()
+        : "",
       headshot,
       logo,
       socials,

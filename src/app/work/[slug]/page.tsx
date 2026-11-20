@@ -10,6 +10,7 @@ import PageShell from "@/components/PageShell";
 import { PROJECT_PRESENTATION } from "@/content/projects";
 import JsonLd from "@/components/JsonLd";
 import { absoluteUrl, pageMetadata } from "@/lib/seo";
+import { BRAND_NAME } from "@/content/site";
 
 export const revalidate = 300;
 
@@ -31,7 +32,7 @@ export async function generateMetadata({
   const { project } = found;
   const kind = project.category === "App Development" ? "app" : "website";
   return pageMetadata({
-    title: `${project.title} — ${kind} built by Victor Abah`,
+    title: `${project.title} — ${kind} built by ${BRAND_NAME}`,
     description: PROJECT_PRESENTATION[slug]?.summary ?? project.description,
     path: `/work/${slug}`,
     image: project.image || undefined,
@@ -74,8 +75,8 @@ export default async function ProjectPage({
           "@id": absoluteUrl(`/work/${slug}`),
         },
         creator: {
-          "@type": "Person",
-          "@id": `${site}#victor`,
+          "@type": "Organization",
+          "@id": `${site}#organization`,
           name: profile.name,
           url: absoluteUrl("/"),
         },

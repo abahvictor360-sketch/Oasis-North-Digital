@@ -23,34 +23,35 @@ const siteUrl = getSiteUrl();
 // these values only apply if that fetch fails or on non-homepage routes.
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Victor Abah | Websites, Business Apps & Thoughtful Design",
+  title: "Oasis Orchard Stack | Web Development, Apps & Automation in Canada",
   description:
-    "Victor Abah builds custom management systems, apps and the websites around them, working remotely with clients worldwide. React, Next.js, React Native and Supabase.",
+    "Oasis Orchard Stack is a Canadian studio building fast websites, custom web and mobile apps, and automation for businesses and individuals.",
   keywords: [
-    "Victor Abah",
-    "remote app developer",
-    "custom management system",
-    "React developer for hire",
-    "React Native",
-    "Next.js",
+    "Oasis Orchard Stack",
+    "web development Canada",
+    "app development Canada",
+    "business automation Canada",
+    "AI automation for small business",
+    "personal website Canada",
+    "website support and hosting",
   ],
-  authors: [{ name: "Victor Abah" }],
+  authors: [{ name: "Oasis Orchard Stack" }],
   // llms.txt is supplementary; it is not an alternate representation of every page.
   openGraph: {
-    title: "Victor Abah | Websites, Business Apps & Thoughtful Design",
+    title: "Oasis Orchard Stack | Web Development, Apps & Automation in Canada",
     description:
-      "6+ years building the systems businesses run on, and replacing the manual workflows and outdated sites that quietly cost them customers.",
+      "Websites, custom apps and automation for Canadian businesses and individuals, replacing the manual workflows and outdated sites that quietly cost them customers.",
     url: siteUrl,
-    siteName: "Victor Abah",
+    siteName: "Oasis Orchard Stack",
     images: [{ url: "/og.png", width: 1200, height: 630 }],
-    locale: "en_US",
+    locale: "en_CA",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Victor Abah | Websites, Business Apps & Thoughtful Design",
+    title: "Oasis Orchard Stack | Web Development, Apps & Automation in Canada",
     description:
-      "6+ years building production websites and applications. Remote, worldwide.",
+      "Websites, custom apps and automation for Canadian businesses and individuals.",
     images: ["/og.png"],
   },
 };
@@ -63,7 +64,7 @@ export default function RootLayout({
   return (
     <html
       data-scroll-behavior="smooth"
-      lang="en"
+      lang="en-CA"
       className={`${display.variable} ${body.variable} antialiased`}
     >
       <body>

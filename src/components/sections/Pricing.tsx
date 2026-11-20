@@ -46,7 +46,7 @@ export default function Pricing({ pricing: PRICING }: { pricing: PricingTier[] }
           </Reveal>
         ))}
       </div>
-      <p className="mt-4 text-center text-xs text-muted">Final pricing & inclusions set by Victor — edit via admin.</p>
+      <p className="mt-4 text-center text-xs text-muted">Final pricing & inclusions are set in the admin.</p>
     </Section>
   );
 }

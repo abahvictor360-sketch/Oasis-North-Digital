@@ -1,13 +1,16 @@
 /**
- * Central content layer for the Victor Abah portfolio.
+ * Central content layer for the Oasis Orchard Stack website.
  *
  * Every public section reads from this file. The shape of each export mirrors
  * the planned Supabase tables (see supabase/schema.sql), so migrating to a
  * live CMS is a one-step swap: replace these constants with `await supabase
  * .from('<table>').select()` calls and the components stay untouched.
  *
- * Placeholders Victor needs to supply are marked with `PLACEHOLDER`.
+ * Placeholders that still need confirming are marked with `PLACEHOLDER`.
  */
+
+/** The studio's name, for static metadata that cannot wait on the CMS. */
+export const BRAND_NAME = "Oasis Orchard Stack";
 
 export type NavItem = { id: string; label: string };
 
@@ -22,15 +25,23 @@ export const NAV_ITEMS: NavItem[] = [
 ];
 
 export const PROFILE = {
-  name: "Victor Abah",
-  role: "Web & App Developer",
+  name: BRAND_NAME,
+  role: "Web, App & Automation Studio",
+  // PLACEHOLDER: swap in the studio's own mailbox and Canadian number once
+  // they exist. These are the current working channels, so enquiries arrive.
   email: "info@victorabah.com",
   phone: "+234 903 532 7537",
   phoneRaw: "2349035327537", // for tel: and wa.me links
-  location: "Lagos, Nigeria",
-  handle: "letvicdoit",
+  location: "Canada",
+  handle: "oasisorchardstack",
+  // Founder photo, shown with the About section.
   headshot: "/portfolio/victor-headshot.jpg",
-  logo: "", // optional brand logo (svg/png); falls back to the text wordmark when empty
+  founder: "Victor Abah",
+  founderRole: "Founder & Lead Developer",
+  // Optional live scheduler (e.g. a Cal.com or Calendly link). When set, every
+  // "Book an appointment" button opens it; when empty, they open /book.
+  bookingUrl: "",
+  logo: "", // optional brand logo (svg/png); falls back to the built-in mark when empty
 
   socials: [
     {
@@ -52,10 +63,11 @@ export const PROFILE = {
 } as const;
 
 export const HERO = {
-  eyebrow: "INDEPENDENT WEB & APP DEVELOPER",
-  headline: "Websites that earn trust. Apps that move business forward.",
+  eyebrow: "WEB · APPS · AUTOMATION — CANADA",
+  headline:
+    "Websites, apps and automation for Canadian businesses and individuals.",
   subtext:
-    "I'm Victor Abah. I help businesses turn a clear idea into a considered website or a useful application. From the first design to launch and ongoing support, you work directly with the person building it.",
+    "Oasis Orchard Stack is a Canadian digital studio. Whether you run a company, work for yourself or have an idea you want to launch, we design and build fast websites, custom web and mobile apps, and automated workflows that take repetitive work off your plate, then stay on to support everything we launch.",
   stats: [
     { value: 6, suffix: "+", label: "Years of Experience" },
     { value: 20, suffix: "+", label: "Sites & Apps Shipped" },
@@ -63,9 +75,9 @@ export const HERO = {
 };
 
 export const ABOUT = {
-  eyebrow: "YOUR DEVELOPMENT PARTNER",
-  headline: "A thoughtful builder. A reliable person to work with.",
-  body: "My background spans a creative agency, an IT team, GIZ Nigeria & ECOWAS and independent client work. That range helps me connect the way a product looks with what a business needs it to do. I design and develop websites and applications, explain technical decisions in plain language, and stay involved after launch. Based in Lagos, I collaborate remotely with clients worldwide, with scope, milestones and feedback agreed before the build begins.",
+  eyebrow: "ABOUT THE STUDIO",
+  headline: "A focused studio with senior hands on every project.",
+  body: "Oasis Orchard Stack gives Canadian businesses, entrepreneurs and individuals a digital partner they can actually reach. The studio was founded by developer Victor Abah and builds on more than six years of shipping websites, business applications and the technical support that keeps them running, for clients in real estate, hospitality, healthcare, retail, logistics and SaaS. We explain decisions in plain language, agree scope, milestones and a fixed quote in Canadian dollars before work begins, and build with Canadian expectations in mind: privacy, accessibility, bilingual readiness and the payment methods your customers already use.",
 };
 
 export type Experience = {
@@ -154,44 +166,44 @@ export type Service = {
 
 export const SERVICES: Service[] = [
   {
-    title: "Tech Specialist",
+    title: "Website Development",
     description:
-      "Technical support for hosting, deployments, integrations and business tools. I trace the issue, explain the fix and document the changes so your team knows how the system is maintained.",
-    icon: "cpu",
+      "Fast, accessible websites for businesses and personal brands that explain your offer and turn visitors into enquiries, bookings or sales. Design, development, content management, search setup and launch, with English and French versions when you need them.",
+    icon: "code",
   },
   {
     title: "App Development",
     description:
-      "Custom web and mobile applications for the way your business works. Dashboards, booking flows, payments and management systems, with the interface, API and database designed together.",
+      "Custom web and mobile apps built around how your business actually runs: customer portals, booking and ordering, dashboards, point of sale and internal tools, with the interface, API and database designed together.",
     icon: "smartphone",
   },
   {
-    title: "Website Development",
+    title: "Business Automation & AI",
     description:
-      "A clear, responsive website that helps visitors understand your offer and take the next step. Design, development, content management, search basics and launch, with ongoing support available.",
-    icon: "code",
+      "Automated workflows that connect the tools you already use, so leads, invoices, bookings and reports move on their own. Where it helps, AI assistants that answer from your own data, with clear limits and human hand-offs.",
+    icon: "workflow",
   },
   {
-    title: "AI-Powered Product Features",
+    title: "Support & Hosting",
     description:
-      "Useful AI features inside your product: support assistants grounded in your records, internal search and content workflows. We define the data, permissions and fallbacks before choosing what to automate.",
-    icon: "bot",
+      "Hosting, domains, email, integrations and the fixes that keep everything running after launch. We trace issues to the cause, explain the fix and document it, on call-outs or a monthly plan.",
+    icon: "cpu",
   },
 ];
 
 export type Skill = { name: string; level: number };
 
 export const SKILLS: Skill[] = [
-  { name: "Website Development", level: 85 },
-  { name: "React.js", level: 80 },
-  { name: "Next.js", level: 82 },
+  { name: "Next.js & React", level: 82 },
   { name: "React Native", level: 75 },
   { name: "TypeScript", level: 78 },
   { name: "Supabase & Postgres", level: 76 },
   { name: "WordPress", level: 90 },
   { name: "Framer", level: 88 },
-  { name: "Technical Support & Hosting", level: 88 },
-]; // PLACEHOLDER — Victor: confirm/adjust each %
+  { name: "Workflow Automation & APIs", level: 80 },
+  { name: "AI Assistants & Retrieval", level: 75 },
+  { name: "Hosting & Technical Support", level: 88 },
+];
 
 export type PortfolioCategory = "Websites" | "App Development";
 
@@ -721,52 +733,57 @@ export type Faq = { question: string; answer: string };
 // Visible on the page AND emitted as FAQPage structured data in src/app/page.tsx.
 export const FAQS: Faq[] = [
   {
-    question: "What kind of websites and apps do you build?",
+    question: "What does Oasis Orchard Stack do?",
     answer:
-      "Management systems and the sites around them: point-of-sale and inventory for retail, school management covering enrolment, attendance, results and fees, hospital and clinic sites with appointment booking, freight and logistics sites with quote requests and tracking, restaurant ordering, e-commerce storefronts, and hotel and property booking. If it has a login, a database and money moving through it, it is the kind of thing I build.",
+      "We are a Canadian digital studio that builds three things, for businesses and individuals alike: websites that turn visitors into customers, custom web and mobile apps, and automations that remove repetitive work from your day. Every project is quoted, built and supported by the same small team, so nothing gets lost between a sales rep and a developer you never meet.",
+  },
+  {
+    question: "Do you work with individuals, or only businesses?",
+    answer:
+      "Both. Alongside companies, we work with freelancers, consultants, creators, job seekers and people with an idea they want to test: a personal or portfolio website, an online shop for a side business, a booking page, a first version of an app, or automating the admin of working for yourself. Projects are scoped to fit, so you only pay for what you actually need.",
+  },
+  {
+    question: "Do you work with clients across Canada?",
+    answer:
+      "Yes. We work remotely with clients in every province and territory, from British Columbia to the Atlantic provinces. Calls are booked in your time zone, quotes and invoices are in Canadian dollars, and progress is visible in a shared project board between meetings.",
+  },
+  {
+    question: "What kinds of tasks can you automate?",
+    answer:
+      "Anything your team does the same way every time: sending new website leads into your CRM and inbox, creating invoices and syncing payments to your bookkeeping, booking confirmations and reminders, onboarding emails, document and report generation, and moving data between apps that do not talk to each other. Where it genuinely helps, we add AI assistants that answer from your own policies and records, with a person stepping in for anything they should not handle.",
   },
   {
     question: "Do you build mobile apps as well as websites?",
     answer:
-      "Yes. Mobile in React Native, and the web app behind it in React and Next.js, with one database and one API serving both. Xpel POS runs the counter of a beauty retailer on a phone or tablet and keeps selling when the network drops; SchoolHub is used by school admins on cheap phones over bad connections.",
+      "Yes. Mobile apps in React Native, and the web app and admin behind them in React and Next.js, with one database and one API serving both. Our work includes a point-of-sale app that keeps selling when the network drops and a school management app used daily on phones.",
   },
   {
-    question: "Can you build a custom management system for my business?",
+    question: "Can you integrate payments and the tools we already use?",
     answer:
-      "That is most of my work. I start from how the business already runs, then build the system around it rather than forcing the business into someone else's software: roles and permissions, the records your staff actually keep, the reports you print, and an audit log of who changed what.",
+      "Yes. Depending on your business, we integrate payment providers such as Stripe, Square and PayPal, along with booking tools, CRMs, email platforms, accounting software and other APIs. We confirm account requirements and the exact workflow during discovery so the integration fits how you already operate.",
   },
   {
-    question: "Can you integrate payments and other business tools?",
+    question: "Do you handle privacy, accessibility and French-language sites?",
     answer:
-      "Yes. Depending on your business and location, I can integrate providers such as Stripe, Paystack, Flutterwave and Remita, along with booking tools, email and other APIs. We confirm availability, account requirements and the workflow during discovery so the integration fits the way your business operates.",
+      "We build with them in mind from the start. Forms collect only what you need and explain why, consent and unsubscribe options support Canada's anti-spam rules, and we design to WCAG accessibility guidelines so the site works for everyone. Sites can be built bilingual-ready with English and French versions; translation is supplied by you or a professional translator. We are developers, not lawyers, so for specific compliance obligations we work alongside your legal advisor.",
   },
   {
     question: "What does a project cost and how long does it take?",
     answer:
-      "Projects are quoted individually, because a one-page site and a school management system are not the same job. Tell me what the system has to do and who uses it, and you get a fixed scope, a timeline and a price before anything starts. For ongoing work there is a monthly retainer covering continuous build, hosting, integrations and support.",
+      "Projects are quoted individually in Canadian dollars, because a five-page website and a custom booking system are not the same job. Tell us what you need and who it is for, and you get a fixed scope, a timeline and a price before anything starts. Ongoing work runs on a monthly plan covering improvements, automations, hosting and support.",
   },
   {
     question: "Do you maintain the site or app after launch?",
     answer:
-      "Yes, and it is a large part of what I do. Hosting, integrations, the fixes that surface once real users arrive, and the technical support behind it. Six years of IT and platform support sits behind that, so a broken deployment or a failing integration gets diagnosed rather than guessed at.",
-  },
-  {
-    question: "Do you work with clients in other countries?",
-    answer:
-      "Yes, that is how most of my work runs. I am remote by default and deliver the same way wherever the client is: a shared backlog, work visible as it lands, and a call when a call is actually needed. I am on WAT (GMT+1), which gives a full overlapping working day with Europe, the UK, the Middle East and Africa, and covers the morning across the Americas. I bill in dollars or naira, whichever suits you.",
-  },
-  {
-    question: "Are you available for full-time or contract roles?",
-    answer:
-      "Yes. I am open to full-time, contract and remote roles alongside client projects. The quickest route is the contact form on this page or a WhatsApp message.",
+      "Yes, and it is a large part of what we do. Hosting, updates, integrations, the fixes that surface once real customers arrive, and the technical support behind it, so a broken form or a failing integration gets diagnosed rather than guessed at.",
   },
 ];
 
 /**
  * Long-form content for the standalone /services/[slug] pages. Each one targets
- * the phrase a client actually searches ("school management system developer",
- * "POS app", "hospital website") rather than a job title, and pulls its proof
- * from the portfolio category named here.
+ * the phrase a client actually searches ("web development Canada",
+ * "business automation", "custom app developer") rather than a job title, and
+ * pulls its proof from the portfolio category named here.
  */
 export type ServicePage = {
   slug: string;
@@ -782,92 +799,124 @@ export type ServicePage = {
 
 export const SERVICE_PAGES: ServicePage[] = [
   {
-    slug: "app-development",
-    service: "App Development",
-    title: "App development for businesses that run on one",
-    metaTitle: "App Development for Business | POS, School & Management Apps",
-    metaDescription:
-      "Remote React Native and Next.js app developer. POS and inventory apps, school and clinic systems, with payments, offline handling and the database behind them.",
-    intro:
-      "An app earns its place when the business cannot run the old way any more: the till needs to know what is in stock, the register has to be taken on a phone in a classroom, the shift has to balance at closing. I build those applications end to end, mobile in React Native and web in React and Next.js, on one database and one API.",
-    sells: [
-      "Point-of-sale and inventory apps for retail, with shifts, cash-up and restock alerts",
-      "School management covering enrolment, attendance, assessments, fees and a pupil portal",
-      "Clinic and hospital tools: appointments, records and the admin behind them",
-      "Internal dashboards and admin panels for teams outgrowing spreadsheets",
-      "Customer-facing apps with accounts, payments and order tracking",
-    ],
-    deliverables: [
-      "Mobile app in React Native, installable to the device",
-      "Web app and admin in React and Next.js",
-      "Database, roles and permissions in Supabase or Postgres, with row-level security",
-      "Payments through Paystack, Flutterwave, Remita or Stripe",
-      "Handling for patchy networks, so work is not lost when the connection drops",
-      "An audit log of who changed what, and the reports your staff print",
-    ],
-    category: "App Development",
-  },
-  {
     slug: "website-development",
     service: "Website Development",
     title: "Websites designed around your customers",
-    metaTitle: "Website Development | React, Next.js, WordPress & Framer",
+    metaTitle: "Website Development in Canada | Oasis Orchard Stack",
     metaDescription:
-      "Remote web developer building production websites in React, Next.js, WordPress and Framer: booking, ordering, quotes, e-commerce, plus launch and support after.",
+      "Canadian web design and development: fast, accessible websites in Next.js, WordPress and Framer with booking, ordering, quotes and e-commerce, plus launch and support.",
     intro:
-      "Most business websites lose the visitor at the same point: the person wants to see a price, check availability, place an order or ask a specific question, and the site sends them to a phone number instead. I build the site that answers them on the page, then stays fast and online afterwards.",
+      "Most business websites lose the visitor at the same point: the person wants to see a price, check availability, book a time or ask a specific question, and the site sends them to a phone number instead. We build the site that answers them on the page, then keep it fast, secure and online afterwards.",
     sells: [
+      "Individuals: personal brands, portfolios, freelancers, coaches and creators",
+      "Service businesses: clinics, trades, consultants and studios taking bookings online",
+      "Restaurants and retail: menus, ordering, pickup and delivery",
       "Hospitality and property: galleries, availability and direct booking",
-      "Restaurants and food: menu, prices, ordering, delivery and table booking",
-      "Logistics and services: quote requests with the detail needed to price them, plus tracking",
-      "E-commerce storefronts with Nigerian payment gateways and delivery options",
-      "Corporate and product sites that explain a technical product to a non-technical buyer",
+      "E-commerce storefronts with Canadian payment and shipping options",
+      "Product and SaaS sites that explain a technical offer to a non-technical buyer",
     ],
     deliverables: [
-      "Responsive build, tested on the phones your customers actually use",
-      "Performance and accessibility work, not a lighthouse score bolted on at the end",
-      "Search and AI-search setup: metadata, structured data, sitemap and copy that targets real queries",
-      "A content editor or admin, so you are not paying for every text change",
-      "Launch, DNS and hosting handled, then the fixes that surface once real traffic arrives",
+      "Responsive build, tested on the phones and browsers your customers use",
+      "Accessibility designed in from the start, following WCAG guidelines",
+      "Search setup: metadata, structured data, sitemap and local SEO for your city",
+      "English and French versions when you need them",
+      "A content editor, so you are not paying for every text change",
+      "Launch, domain, DNS and hosting handled, then ongoing support",
     ],
     category: "Websites",
   },
   {
-    slug: "web-development-nigeria",
-    service: "Nigeria & West Africa",
-    title: "Web and app development for Nigerian businesses",
-    metaTitle: "Web & App Developer in Lagos, Nigeria | Victor Abah",
+    slug: "app-development",
+    service: "App Development",
+    title: "Custom apps for businesses that have outgrown spreadsheets",
+    metaTitle: "Custom App Development in Canada | Oasis Orchard Stack",
     metaDescription:
-      "Nigeria-based web and app developer: POS and inventory, school and clinic systems, e-commerce and booking sites, with Paystack, Flutterwave and Remita, priced in naira.",
+      "Custom web and mobile app development for Canadian businesses: customer portals, booking, POS, dashboards and internal tools, built in React Native and Next.js.",
     intro:
-      "I am based in Nigeria and a good part of my work is for businesses here, which changes what gets built. Payments go through the gateways Nigerians actually use, prices are quoted and displayed in naira, and anything with a register or a till has to keep working when the network drops, because sooner or later it will.",
+      "An app earns its place when the business cannot run the old way any more: bookings live in three inboxes, stock is counted on paper, the team re-types the same data into two systems. We build those applications end to end, mobile in React Native and web in React and Next.js, on one database and one API.",
     sells: [
-      "Retail and beauty businesses running the counter on a notebook",
-      "Schools tracking enrolment, attendance, results and fees across terms",
-      "Clinics and hospitals taking appointments by phone alone",
-      "Hotels, lodges and short-let properties paying commission on every booking",
-      "Restaurants, logistics firms and traders selling through Instagram DMs",
+      "Customer portals with accounts, payments, documents and order tracking",
+      "Booking, scheduling and membership apps",
+      "Point-of-sale and inventory apps for retail",
+      "Internal dashboards and admin panels for teams outgrowing spreadsheets",
+      "MVPs for founders and individuals who need a working product in front of customers",
     ],
     deliverables: [
-      "Paystack, Flutterwave, Remita and Stripe, plus bank transfer and pay on delivery",
-      "Naira pricing, invoicing, part payments and reconciliation built in",
-      "Interfaces that work on a cheap Android phone over a weak connection",
+      "Mobile app in React Native, ready for the App Store and Google Play",
+      "Web app and admin in React and Next.js",
+      "Database, roles and permissions in Supabase or Postgres, with row-level security",
+      "Payments through Stripe, Square or PayPal",
+      "Offline handling, so work is not lost when the connection drops",
+      "An audit log of who changed what, and the reports your team needs",
+    ],
+    category: "App Development",
+  },
+  {
+    slug: "business-automation",
+    service: "Business Automation & AI",
+    title: "Automation that gives your team its hours back",
+    metaTitle:
+      "Business Automation & AI Services in Canada | Oasis Orchard Stack",
+    metaDescription:
+      "Workflow automation and AI for Canadian businesses: connect your CRM, forms, invoicing, bookings and email so routine work runs itself, with AI assistants grounded in your data.",
+    intro:
+      "Every business has work that follows the same steps every time: copy the lead into the CRM, send the quote, chase the invoice, remind the client, update the spreadsheet. We map those workflows, automate the parts that should never need a person, and leave clear hand-offs for the parts that should.",
+    sells: [
+      "Lead capture that lands in your CRM and inbox with an instant reply",
+      "Quotes, invoices and payment reminders generated and sent automatically",
+      "Booking confirmations, reminders and follow-ups",
+      "Reports and dashboards that update themselves",
+      "Freelancers and solo operators who lose evenings to invoices, scheduling and follow-ups",
+      "AI assistants that answer customer and staff questions from your own policies and records",
+    ],
+    deliverables: [
+      "A workflow audit showing where time is going and what to automate first",
+      "Integrations between the tools you already use, through their APIs and webhooks",
+      "AI features with retrieval over your data, guardrails and human fallbacks",
+      "Error alerts and logging, so a broken step is noticed before a customer does",
+      "Documentation your team can follow, and support on a monthly plan",
+    ],
+  },
+  {
+    slug: "web-development-canada",
+    service: "Canada",
+    title:
+      "Web, app and automation services for Canadian businesses and individuals",
+    metaTitle:
+      "Web Development, Apps & Automation in Canada | Oasis Orchard Stack",
+    metaDescription:
+      "Oasis Orchard Stack is a Canadian studio building websites, custom apps and automation for businesses and individuals, quoted in CAD and supported after launch.",
+    intro:
+      "Building for Canadian clients changes what gets built. Customers expect to pay the way they already do, sites often need to work in English and French, privacy and anti-spam rules shape every form and email list, and your team needs someone who answers during your business hours. We plan for all of it from the first call.",
+    sells: [
+      "Local service businesses that want more bookings and fewer phone calls",
+      "Retailers and restaurants selling online and in person",
+      "Clinics, studios and professional firms running on manual admin",
+      "Growing teams whose tools no longer talk to each other",
+      "Founders launching a new product or MVP",
+      "Individuals building a personal brand, portfolio or side business",
+    ],
+    deliverables: [
+      "Quotes and invoices in Canadian dollars, with a fixed scope before work starts",
+      "Payments through providers your customers already trust",
+      "Bilingual-ready builds with English and French versions available",
+      "Privacy-conscious forms and email consent built in",
+      "Meetings in your time zone, Pacific to Atlantic",
       "Hosting, domains and email set up and kept running afterwards",
-      "Quotes and invoices in naira, and a person in your timezone when something breaks",
     ],
   },
   {
     slug: "tech-support",
-    service: "Tech Specialist",
-    title: "Practical technical support, from diagnosis to resolution",
-    metaTitle: "Technical Support & IT Specialist | Victor Abah",
+    service: "Support & Hosting",
+    title: "Support and hosting, from diagnosis to resolution",
+    metaTitle: "Website Support & Hosting in Canada | Oasis Orchard Stack",
     metaDescription:
-      "Six years of hands-on technical support, remote: broken integrations, failed deployments, hosting, access and tooling problems diagnosed, fixed and documented.",
+      "Ongoing website and app support for Canadian businesses: hosting, domains, email, broken integrations and failed deployments diagnosed, fixed and documented.",
     intro:
-      "Failed deployments, an integration that stopped posting, email that will not authenticate, accounts and access nobody can untangle. I isolate the cause, fix it, and write down the fix so the same issue does not come back next week.",
+      "Failed deployments, a form that stopped sending, email that will not authenticate, a site nobody can log in to since the last developer left. We isolate the cause, fix it, and write down the fix so the same issue does not come back next week.",
     sells: [
-      "Sites and apps that have started failing after a change nobody can identify",
-      "Businesses with no in-house technical person and a stack they inherited",
+      "Sites and apps that started failing after a change nobody can identify",
+      "Businesses and individuals with no technical person to call, and a setup they inherited",
       "Teams that need hosting, domains, email and integrations kept running",
       "Handover work: taking over a project from a developer who has gone quiet",
     ],
@@ -876,29 +925,7 @@ export const SERVICE_PAGES: ServicePage[] = [
       "Hosting, DNS, email and deployment pipelines put back in working order",
       "Integration and API faults traced through logs to the failing call",
       "Written notes on what was wrong and what was changed",
-      "Ongoing support on a retainer where that makes more sense than call-outs",
-    ],
-  },
-  {
-    slug: "ai-product-features",
-    service: "AI-Powered Product Features",
-    title: "AI features built around your data and workflows",
-    metaTitle: "AI Features & Assistant Development | Victor Abah",
-    metaDescription:
-      "AI built into your product rather than bolted on: assistants grounded in your real records, retrieval, guardrails, and generated content inside the workflow that uses it.",
-    intro:
-      "An assistant that invents a refund policy costs more than it saves. I build AI features that answer from a company's own published policies and records, with retrieval and guardrails around them, so the answers can be trusted and the team stops repeating itself.",
-    sells: [
-      "Support assistants answering from your policies and a customer's real order",
-      "Internal search across documents and records staff currently dig through by hand",
-      "Generated drafts inside the workflow that uses them, not in a separate tool",
-      "Products that need AI explained to a cautious buyer before they will sign up",
-    ],
-    deliverables: [
-      "Retrieval over your own data, so answers cite something real",
-      "Guardrails and fallbacks for the questions it should refuse",
-      "The surrounding product work: interface, permissions, logging and cost control",
-      "An honest view of what AI will and will not do for your case before we build it",
+      "Ongoing support on a monthly plan where that makes more sense than call-outs",
     ],
   },
 ];
@@ -997,6 +1024,7 @@ export type Testimonial = {
   placeholder?: boolean;
 };
 
+// Real client feedback, given to the studio's founder before the rebrand.
 export const TESTIMONIALS: Testimonial[] = [
   {
     name: "WISDOM EKONG",
@@ -1041,60 +1069,62 @@ export type PricingTier = {
 
 export const PRICING: PricingTier[] = [
   {
-    name: "Project Sprint",
-    price: "Quoted per project",
+    name: "Project",
+    price: "Fixed quote in CAD",
     blurb:
-      "A focused, fixed-scope piece of work: a website, an app feature, or a specific technical problem that needs solving.",
+      "A focused, fixed-scope piece of work: a website, an app, an automation or a specific technical problem that needs solving.",
     features: [
-      "One build track (web or app)",
       "Defined scope & timeline",
+      "Fixed price before work starts",
       "2 revision rounds",
-      "Source code on delivery",
+      "Source code and documentation on delivery",
     ],
   },
   {
-    name: "Full Product Partnership",
-    price: "Monthly retainer",
+    name: "Growth Partnership",
+    price: "Monthly plan in CAD",
     blurb:
-      "Ongoing development and technical support, working as an embedded part of your team rather than a one-off vendor.",
+      "Ongoing development, automation and support, working as an embedded part of your team rather than a one-off vendor.",
     features: [
-      "Continuous build and release",
-      "Web and app work combined",
+      "Continuous improvements and releases",
+      "New automations as your workflows change",
       "Hosting, integrations and monitoring",
       "Priority turnaround",
       "Monthly roadmap check-in",
     ],
     highlighted: true,
   },
-]; // Victor sets final pricing & inclusions
+]; // PLACEHOLDER: set final pricing & inclusions in /admin
 
 export const PROJECT_TYPES = [
-  "Tech Specialist",
-  "App Development",
-  "Website Development",
-  "AI Product Features",
-  "Full-time or contract role",
+  "Website",
+  "Personal website or portfolio",
+  "Web or mobile app",
+  "Business automation",
+  "AI assistant or feature",
+  "Support & hosting",
   "Other",
 ];
 
 export const CONTACT = {
-  headline: "Tell me what you're ready to build.",
+  headline: "Tell us what you're ready to build.",
   whatsappMessage:
-    "Hi Victor, I saw your portfolio and I'd like to talk about working together.",
+    "Hi Oasis Orchard Stack, I saw your website and I'd like to talk about a project.",
 };
 
 // SEO (search engines) + AEO (AI / answer engines) — editable in /admin.
 export const SEO = {
-  metaTitle: "Victor Abah | Websites, Business Apps & Thoughtful Design",
+  metaTitle:
+    "Oasis Orchard Stack | Web Development, Apps & Automation in Canada",
   metaDescription:
-    "Work directly with Victor Abah to design and build your website, business application or digital product. Explore selected projects, client feedback and a clear process. Based in Lagos, working worldwide.",
+    "Oasis Orchard Stack is a Canadian studio building fast websites, custom web and mobile apps, and automation for businesses and individuals. Fixed quotes in CAD and support after launch.",
   keywords:
-    "Victor Abah, remote web developer, remote app developer, hire React developer, Next.js developer for hire, React Native developer, custom management system development, build a POS app, school management system developer, clinic management software developer, logistics and freight website developer, booking system developer, e-commerce developer, Supabase and Postgres developer, TypeScript developer, freelance full-stack developer, contract developer remote, Paystack and Stripe integration developer, MVP development for startups, internal tools developer",
+    "Oasis Orchard Stack, web development Canada, web design Canada, website developer Canada, custom app development Canada, mobile app developer Canada, business automation Canada, workflow automation agency, AI automation for small business, CRM integration, Next.js developer Canada, React Native developer Canada, small business website Canada, personal website Canada, portfolio website for freelancers, website for individuals, e-commerce website Canada, bilingual website English French, website support and hosting Canada, MVP development Canada",
   ogImage: "/og.png",
   // AEO: a concise, factual summary that feeds structured data so AI answer
-  // engines (ChatGPT, Perplexity, Google AI) can describe Victor accurately.
+  // engines (ChatGPT, Perplexity, Google AI) can describe the studio accurately.
   aiSummary:
-    "Victor Abah is a Web & App Developer and Tech Specialist with 6+ years of experience, working remotely with clients worldwide and available for full-time, contract and freelance work. He is based in Nigeria (WAT, GMT+1), which overlaps a full working day with Europe, the UK, the Middle East and most of Africa, and the morning hours of the Americas. He builds production websites and applications end to end and supports them afterwards. Ask him for: a point-of-sale and inventory app for a retail business (Xpel POS, built for Xpel Beauty NG); a school management system covering enrolment, attendance, results, CBT and fees with Paystack, Flutterwave, Remita and Stripe (SchoolHub); a hospital or clinic website with consultant profiles, appointment booking and HMO listings (Deem Hospital); a freight and logistics website with quote requests and shipment tracking (Jhflogistics); a restaurant website with an online menu, ordering, delivery and table booking (Everything Food); a fitness or membership platform (onefitness); an e-commerce storefront with Nigerian payment gateways (Ajusti, Xpel Beauty NG); a multi-property hospitality group site with direct booking (Gateway Lodge Group, Zara Garden Hotel); or a SaaS product site with a dashboard (BrandLift, Nego, Vexpense, Deliva, Finbolt, NexaConnect). He works in React, Next.js, React Native, TypeScript, Supabase and Postgres, WordPress and Framer, and handles hosting, integrations and technical support. He has delivered for a regional development programme spanning West Africa (GIZ and ECOWAS) and for independent clients across real estate, hospitality, travel, healthcare, retail and SaaS, billing in dollars or naira. B.Sc. Mathematics and Computer Science (2021). Contact: info@victorabah.com, +234 903 532 7537.",
+    "Oasis Orchard Stack is a Canadian digital studio offering website development, custom web and mobile app development, and business automation, including AI assistants grounded in a company's own data. It works remotely with businesses, entrepreneurs and individuals across Canada, quotes fixed prices in Canadian dollars, and supports what it launches with hosting, maintenance and technical support. The studio was founded by developer Victor Abah, who brings 6+ years of building production websites and applications. Portfolio work includes a point-of-sale and inventory app (Xpel POS), a school management system (SchoolHub), a hospital website with appointment booking (Deem Hospital), a freight and logistics website (Jhflogistics), restaurant ordering (Everything Food), e-commerce storefronts (Ajusti, Lume), a multi-property hospitality group site with direct booking (Gateway Lodge Group) and SaaS product sites (FoxyAI, Leadloop, BizGrowth, Finbolt, NexaConnect). Technologies: Next.js, React, React Native, TypeScript, Supabase and Postgres, WordPress, Framer, APIs, webhooks and workflow automation.",
   // Site-ownership verification codes (paste from the respective consoles).
   googleVerification: "", // Google Search Console → google-site-verification
   bingVerification: "", // Bing Webmaster (powers ChatGPT/Copilot AEO) → msvalidate.01

@@ -14,7 +14,7 @@ const STEPS = [
   },
   {
     title: "Build, review and refine",
-    body: "The work progresses in visible stages. I build the interface and the functionality behind it, test across screen sizes, and work through your feedback.",
+    body: "The work progresses in visible stages. We build the interface, the functionality and the automations behind it, test across screen sizes, and work through your feedback.",
     output: "A working product to test",
   },
   {

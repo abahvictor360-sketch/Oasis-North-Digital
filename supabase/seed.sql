@@ -1,5 +1,5 @@
 -- =============================================================================
--- Victor Abah portfolio — seed data (run AFTER schema.sql)
+-- Oasis Orchard Stack — seed data (run AFTER schema.sql)
 -- Mirrors src/content/site.ts so the live site matches the current static site.
 -- Safe to re-run: clears content tables first (does NOT touch submissions).
 -- =============================================================================
@@ -11,49 +11,11 @@ truncate experience, education, services, skills, portfolio_items,
 insert into site_settings (id, profile, hero, about, contact, seo)
 values (
   1,
-  jsonb_build_object(
-    'name','Victor Abah',
-    'role','Web & App Developer',
-    'email','info@victorabah.com',
-    'phone','+234 903 532 7537',
-    'phoneRaw','2349035327537',
-    'location','Lagos, Nigeria',
-    'handle','letvicdoit',
-    'headshot','/portfolio/victor-headshot.jpg',
-    'logo','',
-    'socials', jsonb_build_array(
-      jsonb_build_object('label','Instagram','url','https://www.instagram.com/letvicdoit','icon','instagram'),
-      jsonb_build_object('label','LinkedIn','url','https://www.linkedin.com/in/victor-abahh/','icon','linkedin'),
-      jsonb_build_object('label','GitHub','url','https://github.com/abahvictor360-sketch','icon','github')
-    )
-  ),
-  jsonb_build_object(
-    'eyebrow','INDEPENDENT WEB & APP DEVELOPER',
-    'headline','Websites that earn trust. Apps that move business forward.',
-    'subtext','I''m Victor Abah. I help businesses turn a clear idea into a considered website or a useful application. From the first design to launch and ongoing support, you work directly with the person building it.',
-    'stats', jsonb_build_array(
-      jsonb_build_object('value',6,'suffix','+','label','Years of Experience'),
-      jsonb_build_object('value',20,'suffix','+','label','Sites & Apps Shipped')
-    )
-  ),
-  jsonb_build_object(
-    'eyebrow','YOUR DEVELOPMENT PARTNER',
-    'headline','A thoughtful builder. A reliable person to work with.',
-    'body','My background spans a creative agency, an IT team, GIZ Nigeria & ECOWAS and independent client work. That range helps me connect the way a product looks with what a business needs it to do. I design and develop websites and applications, explain technical decisions in plain language, and stay involved after launch. Based in Lagos, I collaborate remotely with clients worldwide, with scope, milestones and feedback agreed before the build begins.'
-  ),
-  jsonb_build_object(
-    'headline','Tell me what you''re ready to build.',
-    'whatsappMessage','Hi Victor, I saw your portfolio and I''d like to talk about working together.'
-  ),
-  jsonb_build_object(
-    'metaTitle','Victor Abah | Websites, Business Apps & Thoughtful Design',
-    'metaDescription','Work directly with Victor Abah to design and build your website, business application or digital product. Explore selected projects, client feedback and a clear process. Based in Lagos, working worldwide.',
-    'keywords','Victor Abah, remote web developer, remote app developer, hire React developer, Next.js developer for hire, React Native developer, custom management system development, build a POS app, school management system developer, clinic management software developer, logistics and freight website developer, booking system developer, e-commerce developer, Supabase and Postgres developer, TypeScript developer, freelance full-stack developer, contract developer remote, Paystack and Stripe integration developer, MVP development for startups, internal tools developer',
-    'ogImage','/og.png',
-    'aiSummary','Victor Abah is a Web & App Developer and Tech Specialist with 6+ years of experience, working remotely with clients worldwide and available for full-time, contract and freelance work. He is based in Nigeria (WAT, GMT+1), which overlaps a full working day with Europe, the UK, the Middle East and most of Africa, and the morning hours of the Americas. He builds production websites and applications end to end and supports them afterwards. Ask him for: a point-of-sale and inventory app for a retail business (Xpel POS, built for Xpel Beauty NG); a school management system covering enrolment, attendance, results, CBT and fees with Paystack, Flutterwave, Remita and Stripe (SchoolHub); a hospital or clinic website with consultant profiles, appointment booking and HMO listings (Deem Hospital); a freight and logistics website with quote requests and shipment tracking (Jhflogistics); a restaurant website with an online menu, ordering, delivery and table booking (Everything Food); a fitness or membership platform (onefitness); an e-commerce storefront with Nigerian payment gateways (Ajusti, Xpel Beauty NG); a multi-property hospitality group site with direct booking (Gateway Lodge Group, Zara Garden Hotel); or a SaaS product site with a dashboard (BrandLift, Nego, Vexpense, Deliva, Finbolt, NexaConnect). He works in React, Next.js, React Native, TypeScript, Supabase and Postgres, WordPress and Framer, and handles hosting, integrations and technical support. He has delivered for a regional development programme spanning West Africa (GIZ and ECOWAS) and for independent clients across real estate, hospitality, travel, healthcare, retail and SaaS, billing in dollars or naira. B.Sc. Mathematics and Computer Science (2021). Contact: info@victorabah.com, +234 903 532 7537.',
-    'googleVerification','',
-    'bingVerification',''
-  )
+  '{"name":"Oasis Orchard Stack","role":"Web, App & Automation Studio","email":"info@victorabah.com","phone":"+234 903 532 7537","phoneRaw":"2349035327537","location":"Canada","handle":"oasisorchardstack","headshot":"/portfolio/victor-headshot.jpg","founder":"Victor Abah","founderRole":"Founder & Lead Developer","bookingUrl":"","logo":"","socials":[{"label":"Instagram","url":"https://www.instagram.com/letvicdoit","icon":"instagram"},{"label":"LinkedIn","url":"https://www.linkedin.com/in/victor-abahh/","icon":"linkedin"},{"label":"GitHub","url":"https://github.com/abahvictor360-sketch","icon":"github"}]}'::jsonb,
+  '{"eyebrow":"WEB · APPS · AUTOMATION — CANADA","headline":"Websites, apps and automation for Canadian businesses and individuals.","subtext":"Oasis Orchard Stack is a Canadian digital studio. Whether you run a company, work for yourself or have an idea you want to launch, we design and build fast websites, custom web and mobile apps, and automated workflows that take repetitive work off your plate, then stay on to support everything we launch.","stats":[{"value":6,"suffix":"+","label":"Years of Experience"},{"value":20,"suffix":"+","label":"Sites & Apps Shipped"}]}'::jsonb,
+  '{"eyebrow":"ABOUT THE STUDIO","headline":"A focused studio with senior hands on every project.","body":"Oasis Orchard Stack gives Canadian businesses, entrepreneurs and individuals a digital partner they can actually reach. The studio was founded by developer Victor Abah and builds on more than six years of shipping websites, business applications and the technical support that keeps them running, for clients in real estate, hospitality, healthcare, retail, logistics and SaaS. We explain decisions in plain language, agree scope, milestones and a fixed quote in Canadian dollars before work begins, and build with Canadian expectations in mind: privacy, accessibility, bilingual readiness and the payment methods your customers already use."}'::jsonb,
+  '{"headline":"Tell us what you''re ready to build.","whatsappMessage":"Hi Oasis Orchard Stack, I saw your website and I''d like to talk about a project."}'::jsonb,
+  '{"metaTitle":"Oasis Orchard Stack | Web Development, Apps & Automation in Canada","metaDescription":"Oasis Orchard Stack is a Canadian studio building fast websites, custom web and mobile apps, and automation for businesses and individuals. Fixed quotes in CAD and support after launch.","keywords":"Oasis Orchard Stack, web development Canada, web design Canada, website developer Canada, custom app development Canada, mobile app developer Canada, business automation Canada, workflow automation agency, AI automation for small business, CRM integration, Next.js developer Canada, React Native developer Canada, small business website Canada, personal website Canada, portfolio website for freelancers, website for individuals, e-commerce website Canada, bilingual website English French, website support and hosting Canada, MVP development Canada","ogImage":"/og.png","aiSummary":"Oasis Orchard Stack is a Canadian digital studio offering website development, custom web and mobile app development, and business automation, including AI assistants grounded in a company''s own data. It works remotely with businesses, entrepreneurs and individuals across Canada, quotes fixed prices in Canadian dollars, and supports what it launches with hosting, maintenance and technical support. The studio was founded by developer Victor Abah, who brings 6+ years of building production websites and applications. Portfolio work includes a point-of-sale and inventory app (Xpel POS), a school management system (SchoolHub), a hospital website with appointment booking (Deem Hospital), a freight and logistics website (Jhflogistics), restaurant ordering (Everything Food), e-commerce storefronts (Ajusti, Lume), a multi-property hospitality group site with direct booking (Gateway Lodge Group) and SaaS product sites (FoxyAI, Leadloop, BizGrowth, Finbolt, NexaConnect). Technologies: Next.js, React, React Native, TypeScript, Supabase and Postgres, WordPress, Framer, APIs, webhooks and workflow automation.","googleVerification":"","bingVerification":""}'::jsonb
 )
 on conflict (id) do update set
   profile = excluded.profile, hero = excluded.hero,
@@ -78,14 +40,14 @@ insert into education (degree, institution, year, sort_order) values
 
 -- ---------- Services ---------------------------------------------------------
 insert into services (title, description, icon, sort_order) values
-('Tech Specialist','Technical support for hosting, deployments, integrations and business tools. I trace the issue, explain the fix and document the changes so your team knows how the system is maintained.','cpu',0),
-('App Development','Custom web and mobile applications for the way your business works. Dashboards, booking flows, payments and management systems, with the interface, API and database designed together.','smartphone',1),
-('Website Development','A clear, responsive website that helps visitors understand your offer and take the next step. Design, development, content management, search basics and launch, with ongoing support available.','code',2),
-('AI-Powered Product Features','Useful AI features inside your product: support assistants grounded in your records, internal search and content workflows. We define the data, permissions and fallbacks before choosing what to automate.','bot',3);
+('Website Development','Fast, accessible websites for businesses and personal brands that explain your offer and turn visitors into enquiries, bookings or sales. Design, development, content management, search setup and launch, with English and French versions when you need them.','code',0),
+('App Development','Custom web and mobile apps built around how your business actually runs: customer portals, booking and ordering, dashboards, point of sale and internal tools, with the interface, API and database designed together.','smartphone',1),
+('Business Automation & AI','Automated workflows that connect the tools you already use, so leads, invoices, bookings and reports move on their own. Where it helps, AI assistants that answer from your own data, with clear limits and human hand-offs.','workflow',2),
+('Support & Hosting','Hosting, domains, email, integrations and the fixes that keep everything running after launch. We trace issues to the cause, explain the fix and document it, on call-outs or a monthly plan.','cpu',3);
 
 -- ---------- Skills -----------------------------------------------------------
 insert into skills (name, level, sort_order) values
-('Website Development',85,0),('React.js',80,1),('Next.js',82,2),('React Native',75,3),('TypeScript',78,4),('Supabase & Postgres',76,5),('WordPress',90,6),('Framer',88,7),('Technical Support & Hosting',88,8);
+('Next.js & React',82,0),('React Native',75,1),('TypeScript',78,2),('Supabase & Postgres',76,3),('WordPress',90,4),('Framer',88,5),('Workflow Automation & APIs',80,6),('AI Assistants & Retrieval',75,7),('Hosting & Technical Support',88,8);
 
 -- ---------- Portfolio --------------------------------------------------------
 -- sort_order 0 = newest, highest number = oldest. When adding a new item,
@@ -182,7 +144,7 @@ insert into clients (name, logo_url, sort_order) values
 
 -- ---------- Pricing ----------------------------------------------------------
 insert into pricing_tiers (name, price, blurb, features, highlighted, sort_order) values
-('Project Sprint','Quoted per project','A focused, fixed-scope piece of work: a website, an app feature, or a specific technical problem that needs solving.',
-  array['One build track (web or app)','Defined scope & timeline','2 revision rounds','Source code on delivery'],false,0),
-('Full Product Partnership','Monthly retainer','Ongoing development and technical support, working as an embedded part of your team rather than a one-off vendor.',
-  array['Continuous build and release','Web and app work combined','Hosting, integrations and monitoring','Priority turnaround','Monthly roadmap check-in'],true,1);
+('Project','Fixed quote in CAD','A focused, fixed-scope piece of work: a website, an app, an automation or a specific technical problem that needs solving.',
+  array['Defined scope & timeline','Fixed price before work starts','2 revision rounds','Source code and documentation on delivery'],false,0),
+('Growth Partnership','Monthly plan in CAD','Ongoing development, automation and support, working as an embedded part of your team rather than a one-off vendor.',
+  array['Continuous improvements and releases','New automations as your workflows change','Hosting, integrations and monitoring','Priority turnaround','Monthly roadmap check-in'],true,1);

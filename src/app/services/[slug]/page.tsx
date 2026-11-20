@@ -60,15 +60,12 @@ export default async function ServicePage({
         serviceType: page.sells,
         url: `${site}/services/${page.slug}`,
         provider: {
-          "@type": "Person",
-          "@id": `${site}#victor`,
+          "@type": "Organization",
+          "@id": `${site}#organization`,
           name: profile.name,
           url: site,
         },
-        areaServed: [
-          { "@type": "Country", name: "Nigeria" },
-          "Worldwide (remote)",
-        ],
+        areaServed: { "@type": "Country", name: "Canada" },
       },
       {
         "@type": "BreadcrumbList",

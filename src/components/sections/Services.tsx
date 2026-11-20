@@ -7,8 +7,8 @@ import Reveal from "@/components/Reveal";
 const SERVICE_ORDER = [
   "Website Development",
   "App Development",
-  "AI-Powered Product Features",
-  "Tech Specialist",
+  "Business Automation & AI",
+  "Support & Hosting",
 ];
 const rank = (title: string) => {
   const position = SERVICE_ORDER.indexOf(title);
@@ -23,12 +23,13 @@ export default function Services({
   return (
     <Section
       id="services"
-      eyebrow="WHAT I CAN HELP WITH"
-      title="The right build for your next stage."
+      eyebrow="WHAT WE DO"
+      title="Websites, apps and automation, built to grow with you."
     >
       <p className="mb-9 max-w-2xl text-base leading-relaxed text-muted">
-        Whether you need a stronger first impression or a better way to run the
-        business, we start with the job your product needs to do.
+        Whether you&apos;re a business or an individual, and need a stronger first
+        impression, a better way to work or fewer hours lost to manual tasks, we
+        start with the job the technology needs to do.
       </p>
       <div className="grid gap-5 sm:grid-cols-2">
         {[...SERVICES]

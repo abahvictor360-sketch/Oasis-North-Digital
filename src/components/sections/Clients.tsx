@@ -6,12 +6,12 @@ export default function Clients({ clients }: { clients: Client[] }) {
   return (
     <section
       id="clients"
-      aria-label="Professional experience"
+      aria-label="Teams we have delivered for"
       className="border-b border-border px-6 py-9 sm:px-10 lg:px-12"
     >
       <div className="mx-auto max-w-6xl">
         <p className="text-center text-xs leading-relaxed text-muted">
-          Experience working with teams at
+          Our team has delivered work for
         </p>
         <ul className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
           {clients.map((client) => (

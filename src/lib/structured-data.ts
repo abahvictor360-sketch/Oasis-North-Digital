@@ -31,23 +31,31 @@ export function homeStructuredData({
   seo: SeoData;
 }) {
   const site = getSiteUrl();
-  const personId = `${site}#victor`;
-  const person = {
-    "@type": "Person",
-    "@id": personId,
+  const orgId = `${site}#organization`;
+  const organization = {
+    "@type": "ProfessionalService",
+    "@id": orgId,
     name: profile.name,
-    jobTitle: profile.role,
+    slogan: profile.role,
     description: about.body,
     url: absoluteUrl("/"),
     email: profile.email,
     telephone: profile.phone,
-    image: profile.headshot ? absoluteUrl(profile.headshot) : undefined,
-    homeLocation: { "@type": "Place", name: profile.location },
+    logo: absoluteUrl("/icon.png"),
+    image: absoluteUrl(seo.ogImage || "/og.png"),
+    address: { "@type": "PostalAddress", addressCountry: "CA" },
+    areaServed: { "@type": "Country", name: profile.location },
     knowsAbout: [...skills.map((s) => s.name), ...services.map((s) => s.title)],
-    alumniOf: education.map((e) => ({
-      "@type": "CollegeOrUniversity",
-      name: e.institution,
-    })),
+    founder: {
+      "@type": "Person",
+      name: profile.founder,
+      jobTitle: profile.founderRole,
+      image: profile.headshot ? absoluteUrl(profile.headshot) : undefined,
+      alumniOf: education.map((e) => ({
+        "@type": "CollegeOrUniversity",
+        name: e.institution,
+      })),
+    },
     sameAs: profile.socials.map((s) => s.url),
     makesOffer: services.map((s) => {
       const page = SERVICE_PAGES.find((page) => page.service === s.title);
@@ -58,8 +66,8 @@ export function homeStructuredData({
           name: s.title,
           description: s.description,
           url: absoluteUrl(page ? `/services/${page.slug}` : "/#services"),
-          provider: { "@id": personId },
-          areaServed: "Worldwide (remote)",
+          provider: { "@id": orgId },
+          areaServed: { "@type": "Country", name: profile.location },
         },
       };
     }),
@@ -67,21 +75,21 @@ export function homeStructuredData({
   return {
     "@context": "https://schema.org",
     "@graph": [
-      person,
+      organization,
       {
         "@type": "WebSite",
         "@id": `${site}#website`,
         name: profile.name,
         url: absoluteUrl("/"),
-        inLanguage: "en",
-        publisher: { "@id": personId },
+        inLanguage: "en-CA",
+        publisher: { "@id": orgId },
       },
       {
-        "@type": "ProfilePage",
-        "@id": `${site}#profile`,
+        "@type": "WebPage",
+        "@id": `${site}#home`,
         url: absoluteUrl("/"),
         name: seo.metaTitle,
-        mainEntity: { "@id": personId },
+        about: { "@id": orgId },
         isPartOf: { "@id": `${site}#website` },
       },
       {
@@ -100,7 +108,7 @@ export function homeStructuredData({
               description:
                 PROJECT_PRESENTATION[slug]?.summary ?? item.description,
               url: absoluteUrl(`/work/${slug}`),
-              creator: { "@id": personId },
+              creator: { "@id": orgId },
             },
           })),
       },

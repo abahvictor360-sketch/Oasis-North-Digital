@@ -8,6 +8,17 @@ const routeSource = readFileSync(
   new URL("../src/app/api/contact/route.ts", import.meta.url),
   "utf8",
 );
+// The real booking rules, so the route is tested against what the form offers.
+const bookingContext = { exports: {} };
+vm.runInNewContext(
+  ts.transpileModule(
+    readFileSync(new URL("../src/lib/booking.ts", import.meta.url), "utf8"),
+    { compilerOptions: { module: ts.ModuleKind.CommonJS } },
+  ).outputText,
+  bookingContext,
+);
+const booking = bookingContext.exports;
+
 const valid = {
   name: "Test Client",
   email: "client@example.com",
@@ -43,6 +54,7 @@ function route({
         }),
       }),
     },
+    "@/lib/booking": booking,
     "@/lib/site-url": {
       getSiteUrl: () => "https://www.victorabah.com",
     },
@@ -176,4 +188,74 @@ test("unknown services are rejected and honeypots are not saved", async () => {
   assert.equal((await send({ ...valid, projectType: "invalid" })).status, 422);
   assert.equal((await send({ ...valid, website: "spam" })).status, 200);
   assert.equal(saved.length, 0);
+});
+
+// ---------- Consultation bookings ----------------------------------------
+
+/** The next weekday at least two days out, as YYYY-MM-DD. */
+function nextWeekday() {
+  const d = new Date(Date.now() + 2 * 86400000);
+  while ([0, 6].includes(d.getUTCDay())) d.setUTCDate(d.getUTCDate() + 1);
+  return d.toISOString().slice(0, 10);
+}
+
+const validBooking = {
+  kind: "booking",
+  name: "Test Client",
+  email: "client@example.com",
+  date: nextWeekday(),
+  time: "10:30 AM",
+  timeZone: "America/Vancouver",
+  format: "Video call",
+  topic: "Business automation",
+};
+
+test("a valid booking is saved as a consultation with its details", async () => {
+  const { send, saved } = route({ database: true });
+  const response = await send({ ...validBooking, message: "We use Jobber." });
+  assert.equal(response.status, 200);
+  assert.equal(saved[0].project_type, booking.BOOKING_PROJECT_TYPE);
+  assert.match(saved[0].message, /Requested appointment: .* at 10:30 AM Pacific Time/);
+  assert.match(saved[0].message, /Topic: Business automation/);
+  assert.match(saved[0].message, /We use Jobber\./);
+});
+
+test("bookings without notes are accepted", async () => {
+  const { send } = route({ database: true });
+  assert.equal((await send(validBooking)).status, 200);
+});
+
+test("booking email alerts are labelled as bookings", async () => {
+  const { send, mailed } = route({ email: true });
+  assert.equal((await send(validBooking)).status, 200);
+  assert.match(mailed[0].subject, /consultation booking/i);
+});
+
+test("bookings reject past, weekend, unknown-slot and unknown-zone requests", async () => {
+  const saturday = (() => {
+    const d = new Date(Date.now() + 2 * 86400000);
+    while (d.getUTCDay() !== 6) d.setUTCDate(d.getUTCDate() + 1);
+    return d.toISOString().slice(0, 10);
+  })();
+  for (const bad of [
+    { date: "2020-01-06" },
+    { date: saturday },
+    { date: "2026-02-30" },
+    { time: "3:15 AM" },
+    { timeZone: "Europe/London" },
+    { format: "In person" },
+    { topic: "Anything" },
+  ]) {
+    // A fresh route per case keeps the per-instance rate limit out of the way.
+    const { send, saved } = route({ database: true });
+    assert.equal((await send({ ...validBooking, ...bad })).status, 422, JSON.stringify(bad));
+    assert.equal(saved.length, 0);
+  }
+});
+
+test("phone-call bookings need a phone number", async () => {
+  const { send } = route({ database: true });
+  const phoneCall = { ...validBooking, format: "Phone call" };
+  assert.equal((await send(phoneCall)).status, 422);
+  assert.equal((await send({ ...phoneCall, phone: "416 555 0123" })).status, 200);
 });

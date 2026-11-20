@@ -5,6 +5,7 @@ import {
   Sparkles,
   Bot,
   Cpu,
+  Workflow,
   Smartphone,
   Home,
   User,
@@ -121,6 +122,7 @@ const SERVICE: Record<string, LucideIcon> = {
   bot: Bot,
   cpu: Cpu,
   smartphone: Smartphone,
+  workflow: Workflow,
 };
 
 const NAV: Record<string, LucideIcon> = {
