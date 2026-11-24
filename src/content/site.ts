@@ -30,8 +30,8 @@ export const PROFILE = {
   // PLACEHOLDER: swap in the studio's own mailbox and Canadian number once
   // they exist. These are the current working channels, so enquiries arrive.
   email: "info@victorabah.com",
-  phone: "+234 903 532 7537",
-  phoneRaw: "2349035327537", // for tel: and wa.me links
+  phone: "+1 902 593 4442",
+  phoneRaw: "19025934442", // for tel: and wa.me links
   location: "Canada",
   handle: "oasisorchardstack",
   // Founder photo, shown with the About section.
