@@ -2,7 +2,7 @@
  * The canonical absolute URL of the deployed site.
  *
  * Resolution order: an explicit custom domain (NEXT_PUBLIC_SITE_URL) takes
- * priority; otherwise use the established www production domain. Preview
+ * priority; otherwise use the established production domain. Preview
  * deployment hostnames must not become canonical origins by accident.
  */
 export function getSiteUrl(): string {
@@ -16,5 +16,5 @@ export function getSiteUrl(): string {
       /* Use the production origin for malformed configuration. */
     }
   }
-  return "https://www.victorabah.com";
+  return "https://oasisorchardstack.com";
 }

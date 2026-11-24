@@ -56,7 +56,7 @@ function route({
     },
     "@/lib/booking": booking,
     "@/lib/site-url": {
-      getSiteUrl: () => "https://www.victorabah.com",
+      getSiteUrl: () => "https://oasisorchardstack.com",
     },
     resend: {
       Resend: class {
@@ -155,7 +155,7 @@ test("email alerts include safe enquiry details, reply-to and a private inbox li
   assert.equal(mailed[0].replyTo, valid.email);
   assert.match(mailed[0].html, /&lt;script&gt;/);
   assert.doesNotMatch(mailed[0].html, /<script>/);
-  assert.match(mailed[0].text, /https:\/\/www\.victorabah\.com\/admin\/submissions/);
+  assert.match(mailed[0].text, /https:\/\/oasisorchardstack\.com\/admin\/submissions/);
 });
 
 test("email-only delivery requires a sender and a provider receipt", async () => {

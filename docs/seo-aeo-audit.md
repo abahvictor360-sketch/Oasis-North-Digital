@@ -1,6 +1,6 @@
 # SEO and answer-engine audit
 
-Audit date: 19 October 2026. Scope: public HTTP responses on `https://www.victorabah.com`, repository implementation, and the local production build. Search Console, Bing Webmaster Tools, analytics and field performance data were not available.
+Audit date: 19 October 2026. Scope: public HTTP responses on `https://oasisorchardstack.com`, repository implementation, and the local production build. Search Console, Bing Webmaster Tools, analytics and field performance data were not available.
 
 ## Live baseline
 
@@ -37,7 +37,7 @@ Automated tests cover metadata inheritance, canonical normalization, remote imag
 
 ## Account-side follow-through
 
-1. Inspect the www homepage and representative service/project URLs in Google Search Console, then submit `https://www.victorabah.com/sitemap.xml` if it is not already submitted.
+1. Inspect the www homepage and representative service/project URLs in Google Search Console, then submit `https://oasisorchardstack.com/sitemap.xml` if it is not already submitted.
 2. Inspect indexing exclusions and selected canonical URLs after recrawl. Review Bing Webmaster Tools similarly if used.
 3. Measure real search impressions, enquiries and field performance before making claims about improvement. Add dated, client-approved project outcomes when available; avoid manufactured traffic or conversion results.
 

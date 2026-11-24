@@ -43,21 +43,21 @@ test("canonical origin is normalized and never follows an automatic preview host
     load("../src/lib/site-url.ts", {}, { process: { env } }).getSiteUrl();
   assert.equal(
     configured({
-      NEXT_PUBLIC_SITE_URL: "https://www.victorabah.com/path/?x=1",
+      NEXT_PUBLIC_SITE_URL: "https://oasisorchardstack.com/path/?x=1",
     }),
-    "https://www.victorabah.com",
+    "https://oasisorchardstack.com",
   );
   assert.equal(
     configured({ VERCEL_PROJECT_PRODUCTION_URL: "preview.vercel.app" }),
-    "https://www.victorabah.com",
+    "https://oasisorchardstack.com",
   );
   assert.equal(
     configured({ NEXT_PUBLIC_SITE_URL: "invalid" }),
-    "https://www.victorabah.com",
+    "https://oasisorchardstack.com",
   );
   assert.equal(
     configured({ NEXT_PUBLIC_SITE_URL: "javascript:alert(1)" }),
-    "https://www.victorabah.com",
+    "https://oasisorchardstack.com",
   );
 });
 
@@ -69,13 +69,13 @@ test("inner pages get their own canonical, Open Graph and Twitter values with im
   });
   assert.equal(
     metadata.alternates.canonical,
-    "https://www.victorabah.com/work/example",
+    "https://oasisorchardstack.com/work/example",
   );
   assert.equal(metadata.openGraph.url, metadata.alternates.canonical);
   assert.equal(metadata.twitter.title, metadata.title);
   assert.equal(
     metadata.twitter.images[0].url,
-    "https://www.victorabah.com/og.png",
+    "https://oasisorchardstack.com/og.png",
   );
   const remote =
     "https://example.supabase.co/storage/v1/object/public/media/preview.webp";
@@ -204,6 +204,6 @@ test("llms.txt mirrors public biography and derives missing post slugs", async (
   const text = await response.text();
   assert.match(response.headers.get("content-type"), /text\/plain/);
   assert.ok(text.includes(content.ABOUT.body));
-  assert.ok(text.includes("https://www.victorabah.com/blog/an-example-post"));
+  assert.ok(text.includes("https://oasisorchardstack.com/blog/an-example-post"));
   assert.equal(text.includes(staleSummary), false);
 });

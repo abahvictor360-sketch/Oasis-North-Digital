@@ -44,6 +44,14 @@ export function homeStructuredData({
     logo: absoluteUrl("/icon.png"),
     image: absoluteUrl(seo.ogImage || "/og.png"),
     address: { "@type": "PostalAddress", addressCountry: "CA" },
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "sales",
+      email: profile.email,
+      telephone: profile.phone,
+      areaServed: "CA",
+      availableLanguage: "English",
+    },
     areaServed: { "@type": "Country", name: profile.location },
     knowsAbout: [...skills.map((s) => s.name), ...services.map((s) => s.title)],
     founder: {

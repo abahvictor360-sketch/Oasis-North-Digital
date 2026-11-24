@@ -26,7 +26,7 @@ function route(env = { WHATSAPP_VERIFY_TOKEN: token, META_APP_SECRET: secret }) 
 
 test("Meta verification echoes the exact challenge only for the configured token", async () => {
   const handlers = route();
-  const url = new URL("https://www.victorabah.com/api/webhooks/whatsapp");
+  const url = new URL("https://oasisorchardstack.com/api/webhooks/whatsapp");
   url.search = new URLSearchParams({ "hub.mode": "subscribe", "hub.verify_token": token, "hub.challenge": "123456789" });
   const response = await handlers.GET(new Request(url));
   assert.equal(response.status, 200);

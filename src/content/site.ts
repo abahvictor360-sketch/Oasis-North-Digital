@@ -27,11 +27,9 @@ export const NAV_ITEMS: NavItem[] = [
 export const PROFILE = {
   name: BRAND_NAME,
   role: "Web, App & Automation Studio",
-  // PLACEHOLDER: swap in the studio's own mailbox and Canadian number once
-  // they exist. These are the current working channels, so enquiries arrive.
-  email: "info@victorabah.com",
-  phone: "+234 903 532 7537",
-  phoneRaw: "2349035327537", // for tel: and wa.me links
+  email: "info@oasisorchardstack.com",
+  phone: "+1 902 593 4442",
+  phoneRaw: "19025934442", // for tel: and wa.me links
   location: "Canada",
   handle: "oasisorchardstack",
   // Founder photo, shown with the About section.
@@ -443,7 +441,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     title: "OBSpad",
     category: "App Development",
     description:
-      "Live production software assumes a laptop, a mouse and a desk, which is not what a church media volunteer or a solo streamer actually has. OBSpad is my own app: it turns an Android tablet or iPad into a full production desk modelled on OBS Studio, rebuilt for fingers with big targets, pinch to scale and long-press menus. Scenes and Studio Mode preview, chroma key and audio filters, USB capture cards and webcams, output to a second screen or NDI, and going live on Facebook, YouTube or Twitch with just a stream key.",
+      "Live production software assumes a laptop, a mouse and a desk, which is not what a church media volunteer or a solo streamer actually has. OBSpad is our own app: it turns an Android tablet or iPad into a full production desk modelled on OBS Studio, rebuilt for fingers with big targets, pinch to scale and long-press menus. Scenes and Studio Mode preview, chroma key and audio filters, USB capture cards and webcams, output to a second screen or NDI, and going live on Facebook, YouTube or Twitch with just a stream key.",
     image: "/portfolio/apps/obspad.webp",
     link: "https://obspad.vercel.app",
   },
@@ -649,7 +647,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     title: "BrandLift",
     category: "Websites",
     description:
-      "A brand-building and marketing platform where I built the entire front end: marketing site, authenticated dashboard and the sign-up flow between them. The hard part was keeping one visual language across a bold marketing page and a dense product UI.",
+      "A brand-building and marketing platform where we built the entire front end: marketing site, authenticated dashboard and the sign-up flow between them. The hard part was keeping one visual language across a bold marketing page and a dense product UI.",
     image: "/portfolio/websites/brandlift.webp",
     link: "https://brandlift-omega.vercel.app",
   },
@@ -1031,21 +1029,21 @@ export const TESTIMONIALS: Testimonial[] = [
     title: "Diagnostic Radiographer & Professional Resume Writer",
     company: "",
     quote:
-      "He is a great web designer and creator and his prices are affordable. He is highly recommended.",
+      "Oasis Orchard Stack are great web designers and creators and their prices are affordable. Highly recommended.",
   },
   {
     name: "Edidiong Sunday Udoh",
     title: "Brand Communication & Content Marketing",
     company: "",
     quote:
-      "Victor is super creative when it comes to creating attractive visual designs. His designs are top-notch and professional. Over time he has lived up to expectations.",
+      "Oasis Orchard Stack are super creative when it comes to creating attractive visual designs. Their designs are top-notch and professional. Over time they have lived up to expectations.",
   },
   {
     name: "Kator Tarkaa",
     title: "Founder",
     company: "Fastora",
     quote:
-      "Working with Victor was a great experience from start to finish. He was responsive, open to feedback, and genuinely cared about getting every detail right. We went through several rounds of refinements, and he remained patient throughout, making sure the final website reflected exactly what Fastora stands for. The end result is something we're genuinely proud of, and I'd happily recommend him to anyone looking for a reliable web developer.",
+      "Working with Oasis Orchard Stack was a great experience from start to finish. The team was responsive, open to feedback, and genuinely cared about getting every detail right. We went through several rounds of refinements, and they remained patient throughout, making sure the final website reflected exactly what Fastora stands for. The end result is something we're genuinely proud of, and I'd happily recommend them to anyone looking for a reliable web development partner.",
     photo: "/testimonials/kator-tarkaa.jpg",
   },
 ];
